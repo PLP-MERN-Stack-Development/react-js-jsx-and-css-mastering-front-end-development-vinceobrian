@@ -219,7 +219,7 @@ This project is part of the PLP MERN Stack Development course.
 
 ## 🔗 Live Demo
 
-[Deploy your application and add the URL here]
+https://vercel.com/turbo-vincents-projects/react-js-jsx-and-css-mastering-front-end-development-vinceobrian/FL4T72cmJCfeXKvMmJ4YVQEDf6Qt
 
 ---
 
