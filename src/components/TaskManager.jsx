@@ -1,20 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Button from './Button';
+import Card from './Card';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
 /**
  * Custom hook for managing tasks with localStorage persistence
  */
 const useLocalStorageTasks = () => {
-  // Initialize state from localStorage or with empty array
-  const [tasks, setTasks] = useState(() => {
-    const savedTasks = localStorage.getItem('tasks');
-    return savedTasks ? JSON.parse(savedTasks) : [];
-  });
-
-  // Update localStorage when tasks change
-  useEffect(() => {
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-  }, [tasks]);
+  const [tasks, setTasks] = useLocalStorage('tasks', []);
 
   // Add a new task
   const addTask = (text) => {
@@ -71,7 +64,7 @@ const TaskManager = () => {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+    <Card>
       <h2 className="text-2xl font-bold mb-6">Task Manager</h2>
 
       {/* Task input form */}
@@ -82,7 +75,7 @@ const TaskManager = () => {
             value={newTaskText}
             onChange={(e) => setNewTaskText(e.target.value)}
             placeholder="Add a new task..."
-            className="flex-grow px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600"
+            className="flex-grow input-field"
           />
           <Button type="submit" variant="primary">
             Add Task
@@ -161,7 +154,7 @@ const TaskManager = () => {
           {tasks.filter((task) => !task.completed).length} tasks remaining
         </p>
       </div>
-    </div>
+    </Card>
   );
 };
 
